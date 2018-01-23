@@ -12,23 +12,33 @@ var losses = 0;
 var score = 0; 
 
 var gameSetup = function() {
+	console.log("being game!");
 	$("#score").append("<div class='score'> Score: " + score + "</div>");
  	$("#score").append("<div class='wins'> Wins: " + wins + "</div>");
  	$("#score").append("<div class='losses'> Losses: " + losses + "</div>");
+
+ 	for (i = 0; i < crystalImgs.length; i++) {
+		$("#jewels").append("<img class='crystalImg' src='" + crystalImgs[i] + "'>");
+	}
 };
 
 var beginGame = function() {
+ 	score = 0;
+ 	$(".score").html("Score: " + score);
+ 	console.log(score);
+
 	randomNum = Math.floor(Math.random() * (120 - 12) + 12)
 	
-	randCrystalNum = Math.floor(Math.random() * (12 - 1) + 1)
 	
 	$("#randomNum").html(randomNum);
 
+	var images = $(".crystalImg")
 
-	for (i = 0; i < crystalImgs.length; i++) {
-		$("#jewels").append("<img class='crystalImg' src='" + crystalImgs[i] + "'>");
-		
-		$(".crystalImg").attr("data-img-num", randCrystalNum);
+	for (i = 0; i < images.length; i++) {
+	randCrystalNum = Math.floor(Math.random() * (12 - 1) + 1);
+
+		$(images[i]).attr("data-img-num", randCrystalNum);
+		console.log(images[i]);
 	}
 };
 
@@ -51,7 +61,7 @@ var scoreCounter = function() {
  		$(".losses").html("Losses: " + losses);
  			beginGame();
  		}
- 	});	
+	});	
 };
 
 
